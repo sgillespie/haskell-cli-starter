@@ -3,7 +3,6 @@ name:                haskell-cli-starter
 version:             0.0.0.0
 synopsis:            See README for more info
 description:
-    See README for more info.
     See [README.md](https://github.com/sgillespie/haskell-cli-starter#haskell-cli-starter) for more details.
 homepage:            https://github.com/sgillespie/haskell-cli-starter
 bug-reports:         https://github.com/sgillespie/haskell-cli-starter/issues
@@ -23,11 +22,12 @@ source-repository head
   location:            https://github.com/sgillespie/haskell-cli-starter.git
 
 common common-options
-  build-depends:       base ^>= 4.15.1.0
-                     , relude
+  build-depends:       base ^>= 4.15.1.0,
+                       relude
 
-  mixins:              base hiding (Prelude)
-                     , relude (Relude as Prelude)
+  mixins:              base hiding (Prelude),
+                       relude (Relude as Prelude),
+                       relude
 
   ghc-options:         -Wall
                        -Wcompat
@@ -46,9 +46,46 @@ common common-options
                        -fwrite-ide-info
                        -hiedir=.hie
   if impl(ghc >= 8.10)
-    ghc-options:       -Wunused-packages
+    -- Incorrectly flags relude and base; Re-enable during debugging
+    -- ghc-options:       -Wunused-packages
 
   default-language:    Haskell2010
+  default-extensions:  BangPatterns,
+                       BinaryLiterals,
+                       ConstraintKinds,
+                       DataKinds,
+                       DefaultSignatures,
+                       DeriveDataTypeable,
+                       DeriveFoldable,
+                       DeriveFunctor,
+                       DeriveGeneric,
+                       DeriveTraversable,
+                       DoAndIfThenElse,
+                       EmptyDataDecls,
+                       ExistentialQuantification,
+                       FlexibleContexts,
+                       FlexibleInstances,
+                       FunctionalDependencies,
+                       GADTs,
+                       GeneralizedNewtypeDeriving,
+                       InstanceSigs,
+                       KindSignatures,
+                       LambdaCase,
+                       MultiParamTypeClasses,
+                       MultiWayIf,
+                       NamedFieldPuns,
+                       OverloadedStrings,
+                       PartialTypeSignatures,
+                       PatternGuards,
+                       PolyKinds,
+                       RankNTypes,
+                       RecordWildCards,
+                       ScopedTypeVariables,
+                       StandaloneDeriving,
+                       TupleSections,
+                       TypeFamilies,
+                       TypeSynonymInstances,
+                       ViewPatterns
 
 library
   import:              common-options
