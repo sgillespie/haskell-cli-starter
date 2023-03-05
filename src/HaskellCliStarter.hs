@@ -1,6 +1,6 @@
 module HaskellCliStarter
-    ( projectName
-    ) where
+  ( projectName,
+  ) where
 
 projectName :: Text
 projectName = "haskell-cli-starter"

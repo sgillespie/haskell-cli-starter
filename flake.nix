@@ -23,9 +23,13 @@
                 evalSystem = "x86_64-linux";
                 inherit index-state;
 
-                shell.tools = {
-                  cabal = { inherit index-state; };
-                  hlint = { inherit index-state; };
+                shell = {
+                  withHoogle = true;
+                  
+                  tools = {
+                    cabal = { inherit index-state; };
+                    hlint = { inherit index-state; };
+                  };
                 };
               };
           })
