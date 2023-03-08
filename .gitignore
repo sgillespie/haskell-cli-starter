@@ -1,6 +1,7 @@
 ### Haskell
 dist
 dist-*
+newdist
 cabal-dev
 *.o
 *.hi
@@ -12,6 +13,7 @@ cabal-dev
 *.aux
 *.hp
 *.eventlog
+.direnv
 .virtualenv
 .hsenv
 .hpc

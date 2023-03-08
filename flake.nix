@@ -2,8 +2,9 @@
   inputs.haskellNix.url = "github:input-output-hk/haskell.nix";
   inputs.nixpkgs.follows = "haskellNix/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.feedback.url = "github:NorfairKing/feedback";
 
-  outputs = { self, nixpkgs, flake-utils, haskellNix }:
+  outputs = { self, nixpkgs, flake-utils, haskellNix, feedback }:
     let
       supportedSystems = [
         "x86_64-linux"
@@ -30,6 +31,13 @@
                     cabal = { inherit index-state; };
                     hlint = { inherit index-state; };
                   };
+
+                  buildInputs = with pkgs; [
+                    feedback.packages.${system}.default
+                    hello
+                    nixpkgs-fmt 
+                  ];
+                    
                 };
               };
           })
