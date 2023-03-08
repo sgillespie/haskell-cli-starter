@@ -15,7 +15,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        os:
+          - ubuntu-latest
+          - macOS-latest
+          # Fourmolu does not work with windows
+          # - windows-latest
         cabal: ["3.0"]
         ghc:
           - "9.0.2"
