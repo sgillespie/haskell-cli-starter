@@ -27,5 +27,6 @@ specs = testGroup "(checked by Hspec)" <$> specs'
 
 properties :: TestTree
 properties =
-  testGroup "(checked by Hedgehog)" $
+  testGroup
+    "(checked by Hedgehog)"
     [testProperty "projectName is projectName" LibSpec.spec]
