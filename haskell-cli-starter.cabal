@@ -23,7 +23,8 @@ source-repository head
 
 common common-options
   build-depends:       base ^>= 4.15.1.0,
-                       relude
+                       relude,
+                       unliftio
 
   mixins:              base hiding (Prelude),
                        relude (Relude as Prelude),
@@ -42,8 +43,7 @@ common common-options
     ghc-options:       -Wmissing-export-lists
                        -Wpartial-fields
   if impl(ghc >= 8.8)
-    ghc-options:       -Wmissing-deriving-strategies
-                       -fwrite-ide-info
+    ghc-options:       -fwrite-ide-info
                        -hiedir=.hie
   if impl(ghc >= 8.10)
     -- Incorrectly flags relude and base; Re-enable during debugging
@@ -89,14 +89,17 @@ common common-options
 
 library
   import:              common-options
+  build-depends:       unliftio
   hs-source-dirs:      src
-  exposed-modules:     HaskellCliStarter
+  exposed-modules:     Development.Starter.App,
+                       Development.Starter.Lib
 
 executable haskell-cli-starter
   import:              common-options
   hs-source-dirs:      app
   main-is:             Main.hs
-  build-depends:       haskell-cli-starter
+  build-depends:       haskell-cli-starter,
+                       optparse-applicative
   ghc-options:         -threaded
                        -rtsopts
                        -with-rtsopts=-N
