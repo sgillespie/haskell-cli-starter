@@ -1,9 +1,11 @@
 module Main (main) where
 
 import qualified Development.Starter.AppSpec as AppSpec
+import qualified Development.Starter.LibSpec as LibSpec
 import qualified Spec
 
 import Test.Tasty
+import Test.Tasty.Hedgehog
 import Test.Tasty.Hspec
 
 main :: IO ()
@@ -12,7 +14,7 @@ main = defaultMain =<< tests
 tests :: IO TestTree
 tests = do
   specs' <- specs
-  pure $ testGroup "Tests" [specs']
+  pure $ testGroup "Tests" [specs', properties]
 
 specs :: IO TestTree
 specs = testGroup "(checked by Hspec)" <$> specs'
@@ -22,3 +24,8 @@ specs = testGroup "(checked by Hspec)" <$> specs'
       prelude <- testSpecs Spec.spec_prelude
       appSpec <- testSpecs AppSpec.spec
       pure $ prelude ++ appSpec
+
+properties :: TestTree
+properties =
+  testGroup "(checked by Hedgehog)" $
+    [testProperty "projectName is projectName" LibSpec.spec]

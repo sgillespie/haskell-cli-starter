@@ -131,10 +131,13 @@ test-suite tests
   hs-source-dirs:      test
   main-is:             Driver.hs
   other-modules:       Spec,
-                       Development.Starter.AppSpec
+                       Development.Starter.AppSpec,
+                       Development.Starter.LibSpec,
   build-depends:       haskell-cli-starter,
+                       hedgehog,
                        hspec,
                        tasty,
+                       tasty-hedgehog,
                        tasty-hspec
   build-tool-depends:  tasty-discover:tasty-discover
   ghc-options:         -threaded
