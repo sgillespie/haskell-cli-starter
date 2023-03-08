@@ -125,12 +125,18 @@ test-suite hlint
                        -rtsopts
                        -with-rtsopts=-N
                        
-test-suite haskell-cli-starter-test
+test-suite tests
   import:              common-options
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
-  main-is:             Spec.hs
-  build-depends:       haskell-cli-starter
+  main-is:             Driver.hs
+  other-modules:       Spec,
+                       Development.Starter.AppSpec
+  build-depends:       haskell-cli-starter,
+                       hspec,
+                       tasty,
+                       tasty-hspec
+  build-tool-depends:  tasty-discover:tasty-discover
   ghc-options:         -threaded
                        -rtsopts
                        -with-rtsopts=-N

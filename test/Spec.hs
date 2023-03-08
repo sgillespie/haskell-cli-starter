@@ -1,6 +1,8 @@
-module Main (main) where
+module Spec (spec_prelude) where
 
-import HaskellCliStarter (projectName)
+import Test.Hspec
 
-main :: IO ()
-main = putTextLn ("Tests for " <> projectName)
+spec_prelude :: Spec
+spec_prelude = describe "Prelude" $ do
+  it "fails" $ do
+    (1 :: Int) `shouldBe` (1 :: Int)
